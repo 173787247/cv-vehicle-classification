@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 模型和结果文件
+models/*.pth
+models/*.pkl
+results/*.json
+!models/.gitkeep
+!results/.gitkeep
+
+# 数据文件（不提交，因为文件较大）
+# 注意：数据文件在百度网盘下载目录，不在项目目录中
+
+# 日志文件
+*.log
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyTorch
+*.pt
+*.pth
+

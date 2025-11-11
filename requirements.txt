@@ -1,0 +1,21 @@
+# 深度学习框架
+torch>=2.0.0
+torchvision>=0.15.0
+
+# 数据处理
+numpy>=1.24.0
+Pillow>=9.5.0
+
+# 机器学习
+scikit-learn>=1.3.0
+
+# 可视化
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 进度条
+tqdm>=4.65.0
+
+# EfficientNet（可选）
+# efficientnet-pytorch>=0.7.1
+

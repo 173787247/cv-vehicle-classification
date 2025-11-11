@@ -1,0 +1,40 @@
+services:
+  # CV车辆识别主服务
+  cv-vehicle-classifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cv-vehicle-classification
+    volumes:
+      # 挂载数据目录（百度网盘下载目录）
+      - C:\baidunetdiskdownload\CV-车辆检测:/app/data:ro
+      # 挂载模型和结果目录，保持数据持久化
+      - ./models:/app/models
+      - ./results:/app/results
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=utf-8
+      - CUDA_VISIBLE_DEVICES=0
+    restart: unless-stopped
+    # GPU支持（RTX 5080或其他NVIDIA GPU）
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import torch; print('GPU available:', torch.cuda.is_available())"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - cv-network
+
+networks:
+  cv-network:
+    driver: bridge
+

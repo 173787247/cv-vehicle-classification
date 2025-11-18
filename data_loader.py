@@ -176,11 +176,15 @@ def create_data_loaders(train_index_file: str, test_index_file: str,
     test_dataset = VehicleDataset(test_paths, test_labels, is_training=False)
     
     # 创建数据加载器
+    # 在Docker中减少num_workers以避免共享内存问题
+    # 如果检测到共享内存不足，使用单线程
+    effective_num_workers = 0 if os.path.exists("/.dockerenv") else num_workers
+    
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
         shuffle=True,
-        num_workers=num_workers,
+        num_workers=effective_num_workers,
         pin_memory=True if torch.cuda.is_available() else False
     )
     
@@ -188,7 +192,7 @@ def create_data_loaders(train_index_file: str, test_index_file: str,
         test_dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=num_workers,
+        num_workers=effective_num_workers,
         pin_memory=True if torch.cuda.is_available() else False
     )
     

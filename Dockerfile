@@ -1,11 +1,13 @@
-# 使用PyTorch官方镜像（支持GPU）
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
+# 使用您现有的PyTorch CUDA镜像（支持GPU，与NLP项目一致）
+FROM pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel
 
 # 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONIOENCODING=utf-8
 ENV CUDA_VISIBLE_DEVICES=0
+ENV PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+ENV OMP_NUM_THREADS=8
 
 # 设置工作目录
 WORKDIR /app

@@ -1,16 +1,17 @@
 services:
-  # CV车辆识别主服务
-  cv-vehicle-classifier:
+  # CV车辆识别主服务（GPU版本）
+  cv-vehicle-classifier-gpu:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: cv-vehicle-classification
+    container_name: cv-vehicle-classification-gpu
     volumes:
       # 挂载数据目录（百度网盘下载目录）
       - C:\baidunetdiskdownload\CV-车辆检测:/app/data:ro
       # 挂载模型和结果目录，保持数据持久化
       - ./models:/app/models
       - ./results:/app/results
+    shm_size: '8gb'  # 增加共享内存大小
     environment:
       - PYTHONPATH=/app
       - PYTHONUNBUFFERED=1
@@ -19,7 +20,7 @@ services:
       - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
       - OMP_NUM_THREADS=8
     restart: unless-stopped
-    # GPU支持（RTX 5080或其他NVIDIA GPU）
+    # NVIDIA GPU支持（RTX 5080或其他NVIDIA GPU）
     deploy:
       resources:
         reservations:
@@ -33,6 +34,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+    stdin_open: true
+    tty: true
     networks:
       - cv-network
 

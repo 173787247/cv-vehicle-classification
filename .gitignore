@@ -33,12 +33,15 @@ ENV/
 *.swo
 *~
 
-# 模型和结果文件
+# 模型和结果文件（保留最终文件）
 models/*.pth
 models/*.pkl
 results/*.json
 !models/.gitkeep
 !results/.gitkeep
+# 注意：训练完成后，手动添加最终模型和结果文件
+# git add -f models/vehicle_classifier_最新时间戳.pth
+# git add -f results/results_最新时间戳.json
 
 # 数据文件（不提交，因为文件较大）
 # 注意：数据文件在百度网盘下载目录，不在项目目录中

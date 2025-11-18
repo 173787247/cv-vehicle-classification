@@ -1,3 +1,4 @@
+
 # CV车辆识别 - 车辆品牌分类模型
 
 ## 项目概述
@@ -191,6 +192,17 @@ python predict.py "C:\baidunetdiskdownload\CV-车辆检测\image\1\License_1\xxx
 - 检查NVIDIA驱动是否安装
 - 检查PyTorch是否支持CUDA
 - 如果GPU不可用，程序会自动使用CPU（速度较慢）
+
+## 📊 最终训练结果
+
+**✅ 项目已完成，模型达到交付要求！**
+
+- **最终准确率**: 99.92% (要求 ≥ 80%)
+- **训练时间**: 2025-11-18 00:10:47
+- **模型文件**: `models/vehicle_classifier_20251118_001047.pth`
+- **测试预测结果**: `results/results_20251118_001047.json`
+
+详细结果请查看 [FINAL_RESULTS.md](FINAL_RESULTS.md)
 
 ## 作者
 
